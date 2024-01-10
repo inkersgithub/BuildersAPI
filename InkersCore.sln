@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkersCore", "InkersCore\InkersCore.csproj", "{852AA45F-4E0B-48D7-89D6-2556636FD187}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkersCore.Domain", "InkersCore.Domain\InkersCore.Domain.csproj", "{EB69F0EE-015C-4648-B876-F23DEB03316E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkersCore.Services", "InkersCore.Services\InkersCore.Services.csproj", "{C2875518-EADD-434E-BC11-FE09EFE1642E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkersCore.Models", "InkersCore.Models\InkersCore.Models.csproj", "{059E32C5-B5ED-432F-96F2-77F34A58BB50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkersCore.Common", "InkersCore.Common\InkersCore.Common.csproj", "{067056C6-991F-462F-A3E7-6CEB43841582}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkersCore.Infrastructure", "InkersCore.Infrastructure\InkersCore.Infrastructure.csproj", "{9C0DB4BF-3D9B-44B4-B2BC-E5FE493E542B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{852AA45F-4E0B-48D7-89D6-2556636FD187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{852AA45F-4E0B-48D7-89D6-2556636FD187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{852AA45F-4E0B-48D7-89D6-2556636FD187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{852AA45F-4E0B-48D7-89D6-2556636FD187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB69F0EE-015C-4648-B876-F23DEB03316E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB69F0EE-015C-4648-B876-F23DEB03316E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB69F0EE-015C-4648-B876-F23DEB03316E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB69F0EE-015C-4648-B876-F23DEB03316E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2875518-EADD-434E-BC11-FE09EFE1642E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2875518-EADD-434E-BC11-FE09EFE1642E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2875518-EADD-434E-BC11-FE09EFE1642E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2875518-EADD-434E-BC11-FE09EFE1642E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{059E32C5-B5ED-432F-96F2-77F34A58BB50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{059E32C5-B5ED-432F-96F2-77F34A58BB50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{059E32C5-B5ED-432F-96F2-77F34A58BB50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{059E32C5-B5ED-432F-96F2-77F34A58BB50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{067056C6-991F-462F-A3E7-6CEB43841582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{067056C6-991F-462F-A3E7-6CEB43841582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{067056C6-991F-462F-A3E7-6CEB43841582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{067056C6-991F-462F-A3E7-6CEB43841582}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C0DB4BF-3D9B-44B4-B2BC-E5FE493E542B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C0DB4BF-3D9B-44B4-B2BC-E5FE493E542B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C0DB4BF-3D9B-44B4-B2BC-E5FE493E542B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C0DB4BF-3D9B-44B4-B2BC-E5FE493E542B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13CCF38D-4F2E-4053-9B06-BFADB0364A76}
+	EndGlobalSection
+EndGlobal
