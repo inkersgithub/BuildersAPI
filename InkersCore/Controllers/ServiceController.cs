@@ -1,4 +1,5 @@
-﻿using InkersCore.Domain;
+﻿using InkersCore.CustomFilters;
+using InkersCore.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -16,6 +17,7 @@ namespace InkersCore.Controllers
         }
 
         [HttpGet]
+        [CustomAuthorization(Permission ="SERR")]
         public ActionResult GetServiceList()
         {
             var result = _serviceManager.GetServiceList();
