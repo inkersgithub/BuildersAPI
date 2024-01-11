@@ -127,13 +127,16 @@ namespace InkersCore.Domain
         private LoginResponse GenerateSuccessLoginResponse(UserAccount userAccount)
         {
             var token = GenerateToken(userAccount);
-            InsertAuthDetailsToCache(token, userAccount);
+            InsertAuthDetailsToCache(token, userAccount, out List<string> roleList);
+            var userGroups = _userAccountRepository.GetUserGroupMappings(userAccount);
             return new LoginResponse()
             {
                 Success = true,
                 SuccessMesssage = "Login Success",
                 Name = userAccount.Name,
-                Token = token
+                Token = token,
+                RoleList = roleList,
+                UserGroups = userGroups
             };
         }
 
@@ -203,9 +206,9 @@ namespace InkersCore.Domain
         /// </summary>
         /// <param name="token">Token</param>
         /// <param name="user">UserAccount</param>
-        private void InsertAuthDetailsToCache(string token, UserAccount user)
+        private void InsertAuthDetailsToCache(string token, UserAccount user, out List<string> roleList)
         {
-            var roleList = _permissionManager.GetUserRoleList(user);
+            roleList = _permissionManager.GetUserRoleList(user);
             var authData = _tokenCacheService.FetchValue(user.Id.ToString());
             if (authData == null)
             {
