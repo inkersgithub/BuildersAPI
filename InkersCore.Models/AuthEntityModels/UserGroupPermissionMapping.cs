@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using InkersCore.Models.EntityModels;
 
 namespace InkersCore.Models.AuthEntityModels
 {
 
     [Table("user_group_permission_mapping")]
-    public class UserGroupPermissionMapping : Common
+    public class UserGroupPermissionMapping : CommonEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

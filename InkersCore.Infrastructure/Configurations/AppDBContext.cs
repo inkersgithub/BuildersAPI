@@ -1,4 +1,5 @@
 ﻿using InkersCore.Models.AuthEntityModels;
+using InkersCore.Models.EntityModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace InkersCore.Infrastructure.Configurations
@@ -20,5 +21,6 @@ namespace InkersCore.Infrastructure.Configurations
         public DbSet<UserGroupPermissionMapping> UserGroupPermissionMappings { get; set; }
         public DbSet<UserPermission> UserPermissions { get; set; }
         public DbSet<UserPermissionMapping> UserPermissionMappings { get; set; }
+        public DbSet<Service> Services { get; set; }
     }
 }

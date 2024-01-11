@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using InkersCore.Models.EntityModels;
 
 namespace InkersCore.Models.AuthEntityModels
 {
     [Table("audit_log")]
-    public class AuditLog : Common
+    public class AuditLog : CommonEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

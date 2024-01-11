@@ -1,10 +1,11 @@
 ﻿using InkersCore.Common;
+using InkersCore.Models.AuthEntityModels;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace InkersCore.Models.AuthEntityModels
+namespace InkersCore.Models.EntityModels
 {
-    public class Common
+    public class CommonEntity
     {
         [Column("is_deleted")]
         public bool IsDeleted { get; set; }
@@ -26,7 +27,7 @@ namespace InkersCore.Models.AuthEntityModels
         [ForeignKey("last_updated_by_id")]
         public UserAccount LastUpdatedBy { get; set; }
 
-        public Common()
+        public CommonEntity()
         {
             IsDeleted = false;
             IsActive = true;

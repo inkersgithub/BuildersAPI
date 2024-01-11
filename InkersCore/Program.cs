@@ -1,7 +1,6 @@
 using InkersCore.Domain;
 using InkersCore.Domain.IRepositories;
 using InkersCore.Infrastructure.Configurations;
-using InkersCore.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -45,6 +44,7 @@ void RegisterServices(WebApplicationBuilder builder)
 {
     builder.Services.AddScoped<AuthManager, AuthManager>();
     builder.Services.AddScoped<PermissionManager, PermissionManager>();
+    builder.Services.AddScoped<ServiceManager, ServiceManager>();
 }
 
 //Register External Services
@@ -59,6 +59,7 @@ void RegisterExternalServices(WebApplicationBuilder builder)
 //Register Database Services
 void RegisterDatabaseServices(WebApplicationBuilder builder)
 {
+    builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
     builder.Services.AddScoped<IUserRepository, UserRepository>();
     builder.Services.AddScoped<IPermissionRepository, PermissionRepository>();
     builder.Services.AddScoped<IAuditRepository, AuditRepository>();

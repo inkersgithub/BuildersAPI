@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using InkersCore.Models.EntityModels;
 
-namespace InkersCore.Models.AuthEntityModels
+namespace InkersCore.Models.EntityModels
 {
-    [Table("user_group")]
-    public class UserGroup : CommonEntity
+    [Table("service")]
+    public class Service : CommonEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,7 +12,7 @@ namespace InkersCore.Models.AuthEntityModels
         public long Id { get; set; }
 
         [Column("name")]
-        [MaxLength(20, ErrorMessage = "Name cannot be greater than 20 characters")]
+        [MaxLength(40, ErrorMessage = "Name cannot be greater than 40 characters")]
         public string Name { get; set; }
     }
 }
