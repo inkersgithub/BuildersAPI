@@ -45,6 +45,7 @@ void RegisterServices(WebApplicationBuilder builder)
     builder.Services.AddScoped<AuthManager, AuthManager>();
     builder.Services.AddScoped<PermissionManager, PermissionManager>();
     builder.Services.AddScoped<ServiceManager, ServiceManager>();
+    builder.Services.AddScoped<CompanyManager, CompanyManager>();
 }
 
 //Register External Services

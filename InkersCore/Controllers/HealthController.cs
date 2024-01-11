@@ -41,6 +41,14 @@ namespace InkersCore.Controllers
             }
 
             //Create new Users
+            var userSysytem = new Models.AuthEntityModels.UserAccount()
+            {
+                Name = "System",
+                Password = "System",
+                Email = "system@inkers.in",
+                Phone = "xxxxxxxxxx",
+            };
+            _dbContext.UserAccounts.Add(userSysytem);
             var userAnoop = new Models.AuthEntityModels.UserAccount()
             {
                 Name = "Anoop",

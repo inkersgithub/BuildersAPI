@@ -3,6 +3,7 @@ using InkersCore.Domain.IServices;
 using InkersCore.Infrastructure.Configurations;
 using InkersCore.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
 
 namespace InkersCore.Infrastructure
@@ -18,6 +19,15 @@ namespace InkersCore.Infrastructure
             _context = context;
             _table = _context.Set<T>();
             _loggerService = loggerService;
+        }
+
+        /// <summary>
+        /// Function to get transaction Context
+        /// </summary>
+        /// <returns>IDbContextTransaction</returns>
+        public IDbContextTransaction GetContextTransaction()
+        {
+            return _context.Database.BeginTransaction();
         }
 
         /// <summary>

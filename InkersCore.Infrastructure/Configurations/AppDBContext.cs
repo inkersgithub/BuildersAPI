@@ -22,5 +22,7 @@ namespace InkersCore.Infrastructure.Configurations
         public DbSet<UserPermission> UserPermissions { get; set; }
         public DbSet<UserPermissionMapping> UserPermissionMappings { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<Company> Companys { get; set; }
+        public DbSet<CompanyServiceMapping> CompanyServiceMappings { get; set; }
     }
 }

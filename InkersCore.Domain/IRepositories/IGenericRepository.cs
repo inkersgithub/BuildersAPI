@@ -1,10 +1,16 @@
 ﻿using InkersCore.Models;
-using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace InkersCore.Domain.IRepositories
 {
     public interface IGenericRepository<T> where T : class
     {
+        /// <summary>
+        /// Function to get transaction Context
+        /// </summary>
+        /// <returns>IDbContextTransaction</returns>
+        public IDbContextTransaction GetContextTransaction();
+
         /// <summary>
         /// Function to get object by id
         /// </summary>
