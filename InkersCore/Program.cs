@@ -23,6 +23,7 @@ RegisterDatabaseContext(builder);
 RegisterServices(builder);
 RegisterExternalServices(builder);
 RegisterDatabaseServices(builder);
+ConfigureCors(builder);
 var app = builder.Build();
 JsonWebTokenHandler.AppSettingConfigure(app.Services.GetRequiredService<IConfiguration>());
 
@@ -31,7 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("MyCorsPolicy");
 app.UseHttpsRedirection();
 //app.UseMiddleware<TokenInterceptorMiddleware>();
 app.UseAuthentication();
@@ -105,5 +106,18 @@ void RegisterAuthenticationProvider(WebApplicationBuilder builder)
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("InkersSecretKey@123456"))
         };
+    });
+}
+
+void ConfigureCors(WebApplicationBuilder builder)
+{
+    builder?.Services.AddCors(options =>
+    {
+        options.AddPolicy("MyCorsPolicy", builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
     });
 }

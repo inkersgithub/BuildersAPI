@@ -42,6 +42,8 @@ namespace InkersCore.Domain
                 var company = ConvertToCompanyObj(companyRequest);
                 _companyGenericReposiotry.Insert(company);
                 AddCompanyServiceMappings(company, companyRequest);
+                response.Success = true;
+                response.SuccessMessage = "Successfully created";
                 transaction.Commit();
             }
             catch (Exception ex)

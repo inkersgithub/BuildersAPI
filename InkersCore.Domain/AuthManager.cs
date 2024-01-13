@@ -46,7 +46,7 @@ namespace InkersCore.Domain
             {
                 if (userId == null) throw new Exception();
                 RemoveAuthDataFromCache(userId, token, logoutAll);
-                return new LogoutResponse() { Success = true, SuccessMesssage = "Successfully logged out" };
+                return new LogoutResponse() { Success = true, SuccessMessage = "Successfully logged out" };
             }
             catch (Exception ex)
             {
@@ -132,7 +132,7 @@ namespace InkersCore.Domain
             return new LoginResponse()
             {
                 Success = true,
-                SuccessMesssage = "Login Success",
+                SuccessMessage = "Login Success",
                 Name = userAccount.Name,
                 Token = token,
                 RoleList = roleList,

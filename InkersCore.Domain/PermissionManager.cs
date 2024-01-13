@@ -38,7 +38,7 @@ namespace InkersCore.Domain
                 permissionList.AddRange(ModifyUserPermissionMappings(modifyPermissionRequest, permissionList));
                 _permissionRepository.ModifyUserPermission(permissionList);
                 transaction.Commit();
-                return new PermissionModifyResponse() { Success = true, SuccessMesssage = "Permission modified" };
+                return new PermissionModifyResponse() { Success = true, SuccessMessage = "Permission modified" };
             }
             catch (Exception ex)
             {
@@ -146,7 +146,7 @@ namespace InkersCore.Domain
                 permissionList.AddRange(ModifyUserGroupPermissionMappings(groupPermissionRequest, permissionList));
                 _permissionRepository.ModifyGroupPermission(permissionList);
                 transaction.Commit();
-                return new PermissionModifyResponse() { Success = true, SuccessMesssage = "Permission modified" };
+                return new PermissionModifyResponse() { Success = true, SuccessMessage = "Permission modified" };
             }
             catch (Exception ex)
             {
