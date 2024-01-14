@@ -19,7 +19,7 @@ namespace InkersCore.Models.RequestModels
         public string Address2 { get; set; }
         public string Address3 { get; set; }
         public string ZipCode { get; set; }
-        public bool IsApproved { get; set; }
+        public int? IsApproved { get; set; } = 0;
         public long[] RequestedServiceIds { get; set; }
     }
 }

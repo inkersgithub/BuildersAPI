@@ -36,6 +36,7 @@ namespace InkersCore.Domain
         public CommonResponse CreateCompanyRequest(AddCompanyRequest companyRequest)
         {
             var response = new CommonResponse();
+            companyRequest.IsApproved = companyRequest.IsApproved ?? 0;
             var transaction = _companyGenericReposiotry.GetContextTransaction();
             try
             {
@@ -85,15 +86,15 @@ namespace InkersCore.Domain
         /// /// <param name="isApproved">IsApproved</param>
         /// <returns></returns>
         /// <exception cref="Exception">User not found</exception>
-        public Company ConvertToCompanyObj(AddCompanyRequest companyRequest, bool isApproved = false)
+        public Company ConvertToCompanyObj(AddCompanyRequest companyRequest, int isApproved = 0)
         {
             var duplicateCompany = _companyGenericReposiotry.Find(new Models.EntityFilter<Company>()
             {
-                Predicate = x=>(x.Phone == companyRequest.Phone || x.Email == companyRequest.Email) && x.IsActive && x.IsApproved && !x.IsDeleted
+                Predicate = x => (x.Phone == companyRequest.Phone || x.Email == companyRequest.Email) && x.IsActive && x.IsApproved == 1 && !x.IsDeleted
             });
             if (duplicateCompany.Count() > 0 && duplicateCompany.First().Phone == companyRequest.Phone) throw new Exception("Duplicate phone");
             if (duplicateCompany.Count() > 0 && duplicateCompany.First().Email == companyRequest.Email) throw new Exception("Duplicate email");
-            
+
             var user = _userRepository.GetUserAccountById(1) ?? throw new Exception("User not found");
             return new Company()
             {
@@ -108,6 +109,34 @@ namespace InkersCore.Domain
                 LastUpdatedBy = user,
                 CreatedBy = user,
             };
+        }
+
+        /// <summary>
+        /// Function to get Company List
+        /// </summary>
+        /// <param name="keyword">keyword</param>
+        /// <param name="status">status</param>
+        /// <returns>CommonResponse</returns>
+        public CommonResponse GetCompanyList(string keyword, string status)
+        {
+            var response = new CommonResponse();
+            try
+            {
+                response.Result = _companyGenericReposiotry.Find(new Models.EntityFilter<Company>()
+                {
+                    Predicate = x => (x.Name.Contains(keyword) || x.Phone.Contains(keyword) || x.Email.Contains(keyword)) && x.IsActive && !x.IsDeleted && x.IsApproved.ToString().Contains(status),
+                    SortBy = x => x.Id,
+                    SortAscending = false,
+                    RowCount = 500
+                });
+                response.Success = true;
+                response.SuccessMessage = "Successfully fetched";
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = ex.Message;
+            }
+            return response;
         }
     }
 }

@@ -15,13 +15,20 @@ namespace InkersCore.Controllers
 
         public CompanyController(CompanyManager companyManager)
         {
-             _companyManager    = companyManager;
+            _companyManager = companyManager;
         }
 
         [HttpPost]
         public IActionResult CreateCompanyRequest([FromBody] AddCompanyRequest company)
         {
             var response = _companyManager.CreateCompanyRequest(company);
+            return Ok(JsonConvert.SerializeObject(response));
+        }
+
+        [HttpGet]
+        public IActionResult GetCompanyList([FromQuery] string? keyword, string? status)
+        {
+            var response = _companyManager.GetCompanyList(keyword ?? "", status ?? "");
             return Ok(JsonConvert.SerializeObject(response));
         }
 

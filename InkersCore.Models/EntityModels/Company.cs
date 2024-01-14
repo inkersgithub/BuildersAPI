@@ -44,14 +44,14 @@ namespace InkersCore.Models.EntityModels
         public UserAccount? UserAccount { get; set; }
 
         [Column("is_approved")]
-        public bool IsApproved { get; set; }
+        public int IsApproved { get; set; }
 
         [NotMapped]
         public long[] RequestedServiceIds { get; set; }
 
         public Company()
         {
-            IsApproved = false;
+            IsApproved = 0;
         }
     }
 }
