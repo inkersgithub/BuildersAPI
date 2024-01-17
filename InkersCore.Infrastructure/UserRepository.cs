@@ -32,7 +32,7 @@ namespace InkersCore.Infrastructure
         /// </summary>
         /// <param name="userId">UserId</param>
         /// <returns>UserAccount</returns>
-        public UserAccount? GetUserAccountById(int userId)
+        public UserAccount? GetUserAccountById(long userId)
         {
             return _context.UserAccounts.FirstOrDefault(user => user.Id == userId);
         }
@@ -82,6 +82,7 @@ namespace InkersCore.Infrastructure
             try
             {
                 _context.UserAccounts.Add(userAccount);
+                _context.SaveChanges();
                 return userAccount;
             }
             catch (Exception ex)

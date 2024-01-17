@@ -1,4 +1,6 @@
-﻿using InkersCore.Domain;
+﻿using InkersCore.Common;
+using InkersCore.CustomFilters;
+using InkersCore.Domain;
 using InkersCore.Domain.IRepositories;
 using InkersCore.Models.EntityModels;
 using InkersCore.Models.RequestModels;
@@ -19,16 +21,41 @@ namespace InkersCore.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCompanyRequest([FromBody] AddCompanyRequest company)
+        public IActionResult CreateCompanyRequest([FromBody] AddUpdateCompanyRequest company)
         {
             var response = _companyManager.CreateCompanyRequest(company);
             return Ok(JsonConvert.SerializeObject(response));
         }
 
         [HttpGet]
+        //[CustomAuthorization(Permission ="COMR")]
         public IActionResult GetCompanyList([FromQuery] string? keyword, string? status)
         {
             var response = _companyManager.GetCompanyList(keyword ?? "", status ?? "");
+            return Ok(JsonConvert.SerializeObject(response));
+        }
+
+        [HttpGet]
+        //[CustomAuthorization(Permission ="COMR")]
+        public IActionResult GetCompanyById([FromQuery] long id)
+        {
+            var response = _companyManager.GetCompanyById(id);
+            return Ok(JsonConvert.SerializeObject(response));
+        }
+
+        [HttpPost]
+        public IActionResult ApproveCompanyRequest([FromBody] AddUpdateCompanyRequest companyRequest)
+        {
+            companyRequest.UpdatedById = JsonWebTokenHandler.GetUserIdFromClaimPrincipal(User);
+            var response = _companyManager.ApproveCompany(companyRequest);
+            return Ok(JsonConvert.SerializeObject(response));
+        }
+
+        [HttpPost]
+        public IActionResult UpdateCompany([FromBody] AddUpdateCompanyRequest companyRequest)
+        {
+            companyRequest.UpdatedById = JsonWebTokenHandler.GetUserIdFromClaimPrincipal(User);
+            var response = _companyManager.UpdateCompany(companyRequest);
             return Ok(JsonConvert.SerializeObject(response));
         }
 

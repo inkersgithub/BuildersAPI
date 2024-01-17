@@ -211,6 +211,18 @@ namespace InkersCore.Controllers
                     Update = true,
                     CreatedBy= userAnoop,
                     LastUpdatedBy= userAnoop
+                },
+                new UserGroupPermissionMapping()
+                {
+                    UserGroup = adminGroup,
+                    Permission = comPermission,
+                    Add = true,
+                    Remove = true,
+                    Approve = true,
+                    View = true,
+                    Update = true,
+                    CreatedBy= userAnoop,
+                    LastUpdatedBy= userAnoop
                 }
             };
             _dbContext.UserGroupPermissionMappings.AddRange(permissionMappingList);

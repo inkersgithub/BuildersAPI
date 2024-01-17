@@ -2,5 +2,6 @@
 {
     public class CommonRequest
     {
+        public long? UpdatedById { get; set; }
     }
 }

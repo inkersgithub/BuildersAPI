@@ -71,7 +71,7 @@ namespace InkersCore.Infrastructure
         /// <returns>object</returns>
         public object Update(T obj)
         {
-            _table.Add(obj);
+            _table.Update(obj);
             _context.SaveChanges();
             return obj;
         }
@@ -83,7 +83,7 @@ namespace InkersCore.Infrastructure
         /// <returns>ObjectList</returns>
         public List<T> UpdateRange(List<T> objList)
         {
-            _table.AddRange(objList);
+            _table.UpdateRange(objList);
             _context.SaveChanges();
             return objList;
         }

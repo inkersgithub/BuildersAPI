@@ -24,7 +24,7 @@ namespace InkersCore.Domain.IRepositories
         /// </summary>
         /// <param name="userId">UserId</param>
         /// <returns>UserAccount</returns>
-        UserAccount? GetUserAccountById(int userId);
+        UserAccount? GetUserAccountById(long userId);
 
         /// <summary>
         /// Function to remove user based on user id

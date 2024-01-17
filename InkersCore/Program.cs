@@ -65,6 +65,7 @@ void RegisterDatabaseServices(WebApplicationBuilder builder)
     builder.Services.AddScoped<IUserRepository, UserRepository>();
     builder.Services.AddScoped<IPermissionRepository, PermissionRepository>();
     builder.Services.AddScoped<IAuditRepository, AuditRepository>();
+    builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 }
 
 //Register Database context

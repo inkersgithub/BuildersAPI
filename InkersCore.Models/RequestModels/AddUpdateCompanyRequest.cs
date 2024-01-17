@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace InkersCore.Models.RequestModels
 {
-    public class AddCompanyRequest:CommonRequest
+    public class AddUpdateCompanyRequest:CommonRequest
     {
-
+        public long? CompanyId { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
