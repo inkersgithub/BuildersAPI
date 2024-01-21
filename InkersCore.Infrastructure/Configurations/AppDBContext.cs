@@ -24,5 +24,6 @@ namespace InkersCore.Infrastructure.Configurations
         public DbSet<Service> Services { get; set; }
         public DbSet<Company> Companys { get; set; }
         public DbSet<CompanyServiceMapping> CompanyServiceMappings { get; set; }
+        public DbSet<Customer> Customer { get; set; }
     }
 }
