@@ -2,6 +2,7 @@
 using InkersCore.Domain.IRepositories;
 using InkersCore.Domain.IServices;
 using InkersCore.Models.AuthEntityModels;
+using InkersCore.Models.EntityModels;
 using InkersCore.Models.RequestModels;
 using InkersCore.Models.ResponseModels;
 using InkersCore.Models.ServiceModels;
@@ -24,16 +25,18 @@ namespace InkersCore.Domain
         private readonly PermissionManager _permissionManager;
         private readonly ILoggerService<AuthManager> _loggerService;
         private readonly IConfiguration _config;
+        private readonly IGenericRepository<Company> _companyGenericRepository;
 
         public AuthManager(IUserRepository userAccountRepository, ITokenCacheService tokenCacheService,
             ILoggerService<AuthManager> loggerService,
-            PermissionManager permissionManager, IConfiguration config)
+            PermissionManager permissionManager, IConfiguration config, IGenericRepository<Company> companyGenericRepository)
         {
             _userAccountRepository = userAccountRepository;
             _tokenCacheService = tokenCacheService;
             _loggerService = loggerService;
             _permissionManager = permissionManager;
             _config = config;
+            _companyGenericRepository = companyGenericRepository;
         }
 
         /// <summary>
@@ -129,15 +132,23 @@ namespace InkersCore.Domain
             var token = GenerateToken(userAccount);
             InsertAuthDetailsToCache(token, userAccount, out List<string> roleList);
             var userGroups = _userAccountRepository.GetUserGroupMappings(userAccount);
-            return new LoginResponse()
+            var loginResponse = new LoginResponse()
             {
                 Success = true,
                 SuccessMessage = "Login Success",
                 Name = userAccount.Name,
                 Token = token,
                 RoleList = roleList,
-                UserGroups = userGroups
+                UserGroups = userGroups,
             };
+            if (userGroups[0].UserGroup.Name != "Admin")
+            {
+                loginResponse.Company = (_companyGenericRepository.Find(new Models.EntityFilter<Company>()
+                {
+                    Predicate = x => x.UserAccount == userAccount && x.IsActive && !x.IsDeleted
+                }).FirstOrDefault() ?? throw new Exception("Company not found"));
+            }
+            return loginResponse;
         }
 
         /// <summary>

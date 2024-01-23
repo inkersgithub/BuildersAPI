@@ -17,7 +17,7 @@ namespace InkersCore.Controllers
         }
 
         [HttpGet]
-        [CustomAuthorization(Permission ="SERR")]
+        //[CustomAuthorization(Permission ="SERR")]
         public ActionResult GetServiceList()
         {
             var result = _serviceManager.GetServiceList();

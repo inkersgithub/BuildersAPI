@@ -5,5 +5,6 @@ namespace InkersCore.Domain.IRepositories
     {
         List<CompanyServiceMapping> GetCompanyServiceMappings(Company company);
         Company? GetCompanyById(long? id);
+        List<Company> GetCompanyListByService(long serviceId);
     }
 }

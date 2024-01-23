@@ -49,6 +49,8 @@ namespace InkersCore.Models.EntityModels
         [NotMapped]
         public long[] RequestedServiceIds { get; set; }
 
+        public List<CompanyServiceMapping> CompanyServices { get; set; }
+
         public Company()
         {
             IsApproved = 0;

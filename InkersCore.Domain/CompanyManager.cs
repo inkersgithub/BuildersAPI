@@ -18,6 +18,8 @@ namespace InkersCore.Domain
         private readonly IUserRepository _userRepository;
         private readonly IGenericRepository<UserAccount> _userGenericRepository;
         private readonly ICompanyRepository _companyRepository;
+        private readonly IGenericRepository<UserGroupMapping> _userGroupMappingGenericRepository;
+        private readonly IGenericRepository<UserGroup> _userGroupGenericRepository;
 
         public CompanyManager(IGenericRepository<Company> companyGenericReposiotry,
             ILoggerService<CompanyManager> loggerService,
@@ -25,7 +27,9 @@ namespace InkersCore.Domain
             IGenericRepository<Service> serviceGenericReposiotry,
             IUserRepository userRepository,
             ICompanyRepository companyRepository,
-            IGenericRepository<UserAccount> userGenericRepository)
+            IGenericRepository<UserAccount> userGenericRepository,
+            IGenericRepository<UserGroupMapping> userGroupMappingRepository,
+            IGenericRepository<UserGroup> userGroupGenericRepository)
         {
             _companyGenericReposiotry = companyGenericReposiotry;
             _serviceGenericReposiotry = serviceGenericReposiotry;
@@ -34,6 +38,8 @@ namespace InkersCore.Domain
             _userRepository = userRepository;
             _companyRepository = companyRepository;
             _userGenericRepository = userGenericRepository;
+            _userGroupMappingGenericRepository = userGroupMappingRepository;
+            _userGroupGenericRepository = userGroupGenericRepository;   
         }
 
         /// <summary>
@@ -247,10 +253,34 @@ namespace InkersCore.Domain
             ValidateCompanyAndUser(companyRequest);
             var company = GetCompanyById(companyRequest.CompanyId);
             var userAccount = CreateUserAccount(companyRequest);
+            AddUserToCompanyGroup(userAccount);
             companyRequest.IsApproved = 1;
             UpdateCompanyDetails(company, companyRequest, userAccount);
             SendPassword(company, userAccount);
             return "Successfully Approved";
+        }
+
+        /// <summary>
+        /// Function to add user to company group
+        /// </summary>
+        /// <param name="userAccount">userAccount</param>
+        /// <exception cref="Exception">Company not found</exception>
+        public void AddUserToCompanyGroup(UserAccount userAccount)
+        {
+            var systemAccount = _userGenericRepository.Find(new Models.EntityFilter<UserAccount>()
+            {
+                Predicate = x => x.Name == "System"
+            }).First()??throw new Exception("System user not found");
+            _userGroupMappingGenericRepository.Insert(new UserGroupMapping()
+            {
+                UserAccount = userAccount,
+                UserGroup = _userGroupGenericRepository.Find(new Models.EntityFilter<UserGroup>()
+                {
+                    Predicate = x=>x.Name =="Company"
+                }).First()??throw new Exception("Company group not found"),
+                CreatedBy = systemAccount,
+                LastUpdatedBy = systemAccount,
+            });
         }
 
         /// <summary>
@@ -397,9 +427,9 @@ namespace InkersCore.Domain
             {
                 Predicate = x => (x.Phone == companyRequest.Phone || x.Email == companyRequest.Email) && x.IsActive && !x.IsDeleted
             });
-            if (duplicateCompany.Count() > 0 && duplicateCompany.First().Phone == companyRequest.Phone)
+            if (duplicateUser.Count() > 0 && duplicateUser.First().Phone == companyRequest.Phone)
                 throw new Exception("Duplicate user phone");
-            if (duplicateCompany.Count() > 0 && duplicateCompany.First().Email == companyRequest.Email)
+            if (duplicateUser.Count() > 0 && duplicateUser.First().Email == companyRequest.Email)
                 throw new Exception("Duplicate company email");
         }
 
@@ -442,6 +472,28 @@ namespace InkersCore.Domain
             company.IsApproved = 2;
             _companyGenericReposiotry.Update(company);
             return "Successfully declined";
+        }
+
+        /// <summary>
+        /// Function to get company list by serviceIds
+        /// </summary>
+        /// <param name="serviceId">serviceId</param>
+        /// <returns>CommonResponse</returns>
+        public CommonResponse GetCompanyListByService(long serviceId)
+        {
+            var response = new CommonResponse();
+            try
+            {
+                response.Result = _companyRepository.GetCompanyListByService(serviceId);
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.Error = true;
+                response.ErrorMessage = ex.Message;
+                throw;
+            }
+            return response;
         }
     }
 }

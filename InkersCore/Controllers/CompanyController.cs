@@ -4,6 +4,7 @@ using InkersCore.Domain;
 using InkersCore.Domain.IRepositories;
 using InkersCore.Models.EntityModels;
 using InkersCore.Models.RequestModels;
+using InkersCore.Models.ResponseModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -14,10 +15,15 @@ namespace InkersCore.Controllers
     public class CompanyController : Controller
     {
         private readonly CompanyManager _companyManager;
+        private readonly JsonSerializerSettings _jsonSerializerSettings;
 
         public CompanyController(CompanyManager companyManager)
         {
             _companyManager = companyManager;
+            _jsonSerializerSettings = new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            };
         }
 
         [HttpPost]
@@ -40,7 +46,7 @@ namespace InkersCore.Controllers
         public IActionResult GetCompanyById([FromQuery] long id)
         {
             var response = _companyManager.GetCompanyById(id);
-            return Ok(JsonConvert.SerializeObject(response));
+            return Ok(JsonConvert.SerializeObject(response, _jsonSerializerSettings));
         }
 
         [HttpPost]
@@ -48,7 +54,7 @@ namespace InkersCore.Controllers
         {
             companyRequest.UpdatedById = JsonWebTokenHandler.GetUserIdFromClaimPrincipal(User);
             var response = _companyManager.ApproveCompany(companyRequest);
-            return Ok(JsonConvert.SerializeObject(response));
+            return Ok(JsonConvert.SerializeObject(response,_jsonSerializerSettings));
         }
 
         [HttpPost]
@@ -56,6 +62,13 @@ namespace InkersCore.Controllers
         {
             companyRequest.UpdatedById = JsonWebTokenHandler.GetUserIdFromClaimPrincipal(User);
             var response = _companyManager.UpdateCompany(companyRequest);
+            return Ok(JsonConvert.SerializeObject(response, _jsonSerializerSettings));
+        }
+
+        [HttpGet]
+        public IActionResult GetCompanyListByServices([FromQuery] long serviceId)
+        {
+            var response = _companyManager.GetCompanyListByService(serviceId);
             return Ok(JsonConvert.SerializeObject(response));
         }
 

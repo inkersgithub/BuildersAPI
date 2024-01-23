@@ -28,8 +28,18 @@ namespace InkersCore.Infrastructure
         {
             return _context.Companys
                 .Where(x => x.Id == id && x.IsActive && !x.IsDeleted)
-                .Include(x=>x.UserAccount)
-                .FirstOrDefault();    
+                .Include(x => x.UserAccount)
+                .FirstOrDefault();
+        }
+
+        public List<Company> GetCompanyListByService(long serviceId)
+        {
+            var mappingCompanyIds = _context.CompanyServiceMappings
+                .Where(x => x.Service.Id == serviceId).Select(x => x.Company.Id).ToArray();
+            var companies = _context.Companys.Where(x => mappingCompanyIds.Contains(x.Id))
+                .Include(x => x.CompanyServices).ThenInclude(x=>x.Service)
+                .ToList();
+            return companies; 
         }
     }
 }
