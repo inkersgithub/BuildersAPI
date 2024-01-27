@@ -48,6 +48,7 @@ void RegisterServices(WebApplicationBuilder builder)
     builder.Services.AddScoped<ServiceManager, ServiceManager>();
     builder.Services.AddScoped<CompanyManager, CompanyManager>();
     builder.Services.AddScoped<CustomerManager, CustomerManager>();
+    builder.Services.AddScoped<SubscriptionManager, SubscriptionManager>();
 }
 
 //Register External Services
@@ -68,6 +69,7 @@ void RegisterDatabaseServices(WebApplicationBuilder builder)
     builder.Services.AddScoped<IAuditRepository, AuditRepository>();
     builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
     builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+    builder.Services.AddScoped<ISubscriptionRepository, SubsciptionRepository>();
 }
 
 //Register Database context

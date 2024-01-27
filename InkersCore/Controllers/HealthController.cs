@@ -276,6 +276,32 @@ namespace InkersCore.Controllers
 
             _serviceGenericRepository.InsertRange(serviceList);
 
+
+            var subscriptionMonthPlan = new SubscriptionPlan()
+            {
+                Days = 30,
+                Name = "30 Days",
+                CreatedBy = userSysytem,
+                LastUpdatedBy = userSysytem,
+            };
+            _dbContext.SubscriptionPlans.Add(subscriptionMonthPlan);
+            var subscriptionQuaterlyPlan = new SubscriptionPlan()
+            {
+                Days = 90,
+                Name = "90 Days",
+                CreatedBy = userSysytem,
+                LastUpdatedBy = userSysytem,
+            };
+            _dbContext.SubscriptionPlans.Add(subscriptionMonthPlan);
+            var subscriptionHalfYearlyPlan = new SubscriptionPlan()
+            {
+                Days = 180,
+                Name = "180 Days",
+                CreatedBy = userSysytem,
+                LastUpdatedBy = userSysytem,
+            };
+            _dbContext.SubscriptionPlans.Add(subscriptionHalfYearlyPlan);
+            _dbContext.SaveChanges();
             return Ok("Intial Run completed");
         }
     }

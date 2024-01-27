@@ -9,7 +9,7 @@ namespace InkersCore.Infrastructure.Configurations
         public AppDBContext(DbContextOptions<AppDBContext> options)
             : base(options)
         {
-            
+
         }
 
         public DbSet<UserAccount> UserAccounts { get; set; }
@@ -25,5 +25,7 @@ namespace InkersCore.Infrastructure.Configurations
         public DbSet<Company> Companys { get; set; }
         public DbSet<CompanyServiceMapping> CompanyServiceMappings { get; set; }
         public DbSet<Customer> Customer { get; set; }
+        public DbSet<SubscriptionPlan> SubscriptionPlans { get; set; }
+        public DbSet<SubscriptionTransaction> SubscriptionTransactions { get; set; }
     }
 }
