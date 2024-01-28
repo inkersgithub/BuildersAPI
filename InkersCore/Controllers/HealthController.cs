@@ -280,6 +280,7 @@ namespace InkersCore.Controllers
             var subscriptionMonthPlan = new SubscriptionPlan()
             {
                 Days = 30,
+                Amount = 100,
                 Name = "30 Days",
                 CreatedBy = userSysytem,
                 LastUpdatedBy = userSysytem,
@@ -296,6 +297,7 @@ namespace InkersCore.Controllers
             var subscriptionHalfYearlyPlan = new SubscriptionPlan()
             {
                 Days = 180,
+                Amount = 500,
                 Name = "180 Days",
                 CreatedBy = userSysytem,
                 LastUpdatedBy = userSysytem,

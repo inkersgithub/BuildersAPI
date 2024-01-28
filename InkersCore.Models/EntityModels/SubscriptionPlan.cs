@@ -17,5 +17,8 @@ namespace InkersCore.Models.EntityModels
 
         [Column("days")]
         public long Days { get; set; }
+
+        [Column("amount")]
+        public float Amount { get; set; }
     }
 }
