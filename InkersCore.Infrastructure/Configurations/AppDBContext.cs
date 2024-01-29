@@ -27,5 +27,8 @@ namespace InkersCore.Infrastructure.Configurations
         public DbSet<Customer> Customer { get; set; }
         public DbSet<SubscriptionPlan> SubscriptionPlans { get; set; }
         public DbSet<SubscriptionTransaction> SubscriptionTransactions { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<CompanyServiceImageMapping> CompanyServiceImageMappings { get; set; }
+        public DbSet<ServiceDoor> ServiceDoors { get; set; }
     }
 }
