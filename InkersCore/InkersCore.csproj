@@ -32,4 +32,8 @@
 		<ProjectReference Include="..\InkersCore.Services\InkersCore.Services.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Assets\" />
+	</ItemGroup>
+
 </Project>

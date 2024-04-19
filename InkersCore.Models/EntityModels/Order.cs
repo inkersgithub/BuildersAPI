@@ -40,6 +40,18 @@ namespace InkersCore.Models.EntityModels
         [ForeignKey("service_door_id")]
         public ServiceDoor? ServiceDoor { get; set; }
 
+        [ForeignKey("service_window_id")]
+        public ServiceWindow? ServiceWindow { get; set; }
+
+        [ForeignKey("service_kitchen_id")]
+        public ServiceKitchen? ServiceKitchen { get; set; }
+
+        [ForeignKey("service_pool_id")]
+        public ServicePool? ServicePool { get; set; }
+
+        [ForeignKey("service_plan_id")]
+        public ServicePlan? ServicePlan { get; set; }
+
         #endregion
 
         [Column("remarks_customer")]

@@ -53,8 +53,13 @@ namespace InkersCore.Infrastructure
         {
             return _dbContext.Orders
                 .Where(x => x.Id == orderId)
+                .Include(x=>x.Service)
                 .Include(x => x.Company)
                 .Include(x => x.ServiceDoor)
+                .Include(x => x.ServicePlan)
+                .Include(x => x.ServiceKitchen)
+                .Include(x => x.ServicePool)
+                .Include(x => x.ServiceWindow)
                 .First();
 
         }
@@ -63,7 +68,7 @@ namespace InkersCore.Infrastructure
         {
             if (filterReqest.IsAdmin)
             {
-                if (filterReqest.Status== null || filterReqest.Status == 0)
+                if (filterReqest.Status == null || filterReqest.Status == 0)
                 {
                     return _dbContext.Orders.Where(x => x.IsActive && !x.IsDeleted && x.CreatedTime.Date >= filterReqest.StartDate.Date && x.CreatedTime.Date <= filterReqest.EndDate.Date)
                         .Include(x => x.Company)

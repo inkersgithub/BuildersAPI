@@ -1,5 +1,4 @@
-﻿using InkersCore.Common;
-using InkersCore.Domain;
+﻿using InkersCore.Domain;
 using InkersCore.Models.RequestModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -23,10 +22,10 @@ namespace InkersCore.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateDoorServiceOrder([FromBody] DoorServiceOrderRequest orderRequest)
+        public IActionResult CreateOrder([FromBody] OrderRequestCommon orderRequest)
         {
             orderRequest.UpdatedById = 1;//JsonWebTokenHandler.GetUserIdFromClaimPrincipal(User);
-            var response = _orderManager.CreateDoorServiceOrder(orderRequest);
+            var response = _orderManager.CreateOrder(orderRequest);
             return Ok(JsonConvert.SerializeObject(response, _jsonSerializerSettings));
         }
 
@@ -38,7 +37,7 @@ namespace InkersCore.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetOrderList([FromQuery]OrderListFilterReqest orderListFilter)
+        public IActionResult GetOrderList([FromQuery] OrderListFilterReqest orderListFilter)
         {
             var response = _orderManager.GetOrderList(orderListFilter);
             return Ok(JsonConvert.SerializeObject(response, _jsonSerializerSettings));
@@ -50,5 +49,6 @@ namespace InkersCore.Controllers
             var response = _orderManager.GetCustomerOrderList(orderListFilter);
             return Ok(JsonConvert.SerializeObject(response, _jsonSerializerSettings));
         }
+
     }
 }

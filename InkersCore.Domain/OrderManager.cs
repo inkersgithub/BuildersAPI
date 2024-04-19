@@ -27,25 +27,18 @@ namespace InkersCore.Domain
             _customerGenericRepository = customerGenericRepository;
         }
 
-        /// <summary>
-        /// Function to create door order service
-        /// </summary>
-        /// <param name="orderRequest">DoorServiceOrderRequest</param>
-        /// <returns>CommonResponse</returns>
-        public CommonResponse CreateDoorServiceOrder(DoorServiceOrderRequest orderRequest)
+        public CommonResponse CreateOrder(OrderRequestCommon orderRequest)
         {
             var apiResponse = new CommonResponse();
             var transaction = _orderRepository.GetContextTransaction();
             try
             {
                 var order = ConvertToOrderObject(orderRequest);
-                ConvertToDoorServiceObject(orderRequest, order);
+                ConvertToServiceObject(orderRequest, order);
                 apiResponse.Result = _orderRepository.CreateOrder(order);
                 apiResponse.Success = true;
                 apiResponse.SuccessMessage = "Order placed successfully";
-
                 transaction.Commit();
-
             }
             catch (Exception ex)
             {
@@ -54,6 +47,35 @@ namespace InkersCore.Domain
                 transaction.Rollback();
             }
             return apiResponse;
+        }
+
+        /// <summary>
+        /// Function to convert to corresponding service object
+        /// </summary>
+        /// <param name="orderRequest">orderRequest</param>
+        /// <param name="order">order</param>
+        private void ConvertToServiceObject(OrderRequestCommon orderRequest, Order order)
+        {
+            switch (orderRequest.ServiceId)
+            {
+                case 1:
+                    order.ServicePlan = orderRequest.ServicePlan;
+                    break;
+                case 2:
+                    order.ServiceDoor = orderRequest.ServiceDoor;
+                    break;
+                case 3:
+                    order.ServiceWindow = orderRequest.ServiceWindow;
+                    break;
+                case 4:
+                    order.ServiceKitchen = orderRequest.ServiceKitchen;
+                    break;
+                case 5:
+                    order.ServicePool = orderRequest.ServicePool;
+                    break;
+                default:
+                    break;
+            }
         }
 
         /// <summary>
@@ -78,29 +100,11 @@ namespace InkersCore.Domain
         }
 
         /// <summary>
-        /// Function to convert order request to door service object
-        /// </summary>
-        /// <param name="orderRequest">DoorServiceOrderRequest</param>
-        /// <param name="order">Order</param>
-        private void ConvertToDoorServiceObject(DoorServiceOrderRequest orderRequest, Order order)
-        {
-            order.ServiceDoor = new ServiceDoor()
-            {
-                Category = orderRequest.Category,
-                Count = orderRequest.Count,
-                PropertyType = orderRequest.PropertyType,
-                Type = orderRequest.Type,
-                CreatedBy = order.CreatedBy,
-                LastUpdatedBy = order.LastUpdatedBy,
-            };
-        }
-
-        /// <summary>
         /// Function to convert order request to order object
         /// </summary>
         /// <param name="orderRequest">OrderRequest</param>
         /// <returns>Order</returns>
-        private Order ConvertToOrderObject(OrderRequest orderRequest)
+        private Order ConvertToOrderObject(OrderRequestCommon orderRequest)
         {
             var company = (Company)_companyGenericRepository.GetById(orderRequest.CompanyId);
             var service = (Service)_serviceGenericRepository.GetById(orderRequest.ServiceId);

@@ -1,0 +1,134 @@
+[
+  {
+    "serviceid": 1,
+    "service": "Plan",
+    "types": {
+      "houselevel": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "basement": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "bedroomlevel": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "style": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "actype": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "pool": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "kitchen": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "pantry": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "garage": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ]
+    }
+  },
+  {
+    "serviceid": 2,
+    "service": "Plan",
+    "types": {
+      "propertytype": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "dooroption": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "type": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ]
+    }
+  }
+]

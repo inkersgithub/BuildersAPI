@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace InkersCore.Models.EntityModels
 {
     [Table("service_door")]
-    public class ServiceDoor : CommonEntity
+    public class ServiceDoor
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -22,5 +22,8 @@ namespace InkersCore.Models.EntityModels
 
         [Column("count")]
         public int Count { get; set; }
+
+        [Column("selected_samples")]
+        public string? SelectedSamples { get; set; }
     }
 }
