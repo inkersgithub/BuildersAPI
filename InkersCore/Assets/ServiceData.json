@@ -130,5 +130,133 @@
         }
       ]
     }
+  },
+  {
+    "serviceid": 3,
+    "service": "Window",
+    "types": {
+      "propertytype": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ]
+    }
+  },
+  {
+    "serviceid": 4,
+    "service": "Kitchen",
+    "types": {
+      "layout": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "shape": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "mode": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ]
+    }
+  },
+  {
+    "serviceid": 5,
+    "service": "Pool",
+    "types": {
+      "type": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "kidpool": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "jacuzzi": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "heater": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "light": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "waterfall": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ],
+      "mosaic": [
+        {
+          "id": 1,
+          "value": "Value1"
+        },
+        {
+          "id": 2,
+          "value": "Value2"
+        }
+      ]
+    }
   }
 ]
